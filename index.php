@@ -13,8 +13,9 @@
 		 curl_setopt($ch, CURLOPT_URL, 'https://api.telegram.org/bot'.TOKEN.'/'.$method);
 		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		 return json_decode(curl_exec($ch));
+		 $results =  json_decode(curl_exec($ch), true);
 		 curl_close($ch);
+		 return $results;
 	 }
 	 function sendAction($chat_id, $action){
 		 bot('sendChataction',[
