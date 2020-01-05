@@ -1,12 +1,8 @@
-﻿<?php
-	 /*
-	 ربات افزودن شمارنده به انتهای پیامها بدون احتیاج به کانال
-	 سازنده : @oYSoF , کانال : @TGsoldierCH
-	 */
+<?php
 	 define('TOKEN', 'محل توکن ربات');
-	 $admin = 'شناسه مدیر ربات';
+	 $admin = ''; # شناسه مدیر ربات
 	 $admin_username = 'oYSoF'; # نام کاربری مدیر ربات بدون @
-	 $ch = 'TGsoldierCH'; # نام کاربری کانال بدون @
+	 $ch = ''; # نام کاربری کانال بدون @
 	 
 	 function bot($method, $data = []){
 		 $ch = curl_init();
@@ -193,6 +189,4 @@
 		 ])
 		 ]);
 	 }
-	 else
-		 forwardMessage($chat_id, $channel, forwardMessage($channel, $chat_id, $msg_id)->result->message_id);
-?>
+	 else forwardMessage($chat_id, $channel, forwardMessage($channel, $chat_id, $msg_id)->result->message_id);
