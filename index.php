@@ -1,4 +1,19 @@
 <?php
+error_reporting(0);
+$telegram_ip_ranges = [
+	['lower' => '149.154.160.0', 'upper' => '149.154.175.255'],
+	['lower' => '91.108.4.0', 'upper' => '91.108.7.255']
+];
+$ip_dec = (float) sprintf('%u', ip2long($_SERVER['REMOTE_ADDR']));
+$ok = false;
+foreach ($telegram_ip_ranges as $telegram_ip_range) {
+	if (!$ok) {
+		$lower_dec = (float) sprintf('%u', ip2long($telegram_ip_range['lower']));
+		$upper_dec = (float) sprintf('%u', ip2long($telegram_ip_range['upper']));
+		$ok = ($ip_dec >= $lower_dec && $ip_dec <= $upper_dec) ? true : false;
+	}
+}
+if (!$ok) exit();
 define('TOKEN', 'محل توکن ربات');
 $admin = ''; # شناسه مدیر ربات
 $admin_username = 'oYSoF'; # نام کاربری مدیر ربات بدون @
